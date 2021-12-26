@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JJemy</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
+  </head>
+
+  <body>
+    <div id="signIn">
+      <section id="signIn__bgImage">
+        <div class="bgImage"></div>
+      </section>
+      <section id="signIn__userInput">
+        <div id="userInput">
+          <form id="userId">
+            <input type="text" placeholder="please enter ID ..." />
+          </form>
+          <button class="signInBtn">로그인</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="successSignIn" class="hidden">
+      <button class="signOutBtn">Sign-Out</button>
+      <div id="content">
+        <section id="userInfo">
+          <div id="clockForm">
+            <h1 id="greet"></h1>
+            <h3 id="clock"></h3>
+          </div>
+          <div id="todoListForm">
+            <form id="todoInputForm">
+              <input type="text" placeholder="Add to Todo" />
+              <button class="todoAddBtn"></button>
+            </form>
+            <ul id="todoList"></ul>
+          </div>
+        </section>
+        <section id="weather">
+          <div id="weather__Form">
+            <span class="city"></span>
+            <span class="weather"></span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="translucent" class="hidden"></div>
+
+    <script defer src="/src/js/Sign/signIn.js"></script>
+    <script defer src="/src/js/Sign/signOut.js"></script>
+    <script defer src="/src/js/BgImg/changeBgImage.js"></script>
+    <script defer src="/src/js/Clock/clock.js"></script>
+    <script defer src="/src/js/TodoList/todoList.js"></script>
+    <script defer src="/src/js/Weather/weather.js"></script>
+  </body>
+</html>
