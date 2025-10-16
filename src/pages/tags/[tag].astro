@@ -4,7 +4,7 @@ import BlogPost from "../../components/BlogPost.astro";
 
 export async function getStaticPaths() {
   const allPosts = Object.values(
-    import.meta.glob("../posts/*.md", { eager: true })
+    import.meta.glob("../posts/*.md", { eager: true }),
   );
 
   const uniqueTags = [
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post: any) =>
-      post.frontmatter.tags.includes(tag)
+      post.frontmatter.tags.includes(tag),
     );
     return {
       params: { tag },

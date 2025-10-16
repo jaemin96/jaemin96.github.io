@@ -1,9 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.configPath": "./prettier.config.mjs",
-  "prettier.requireConfig": true
+  "prettier.enable": true
 }
