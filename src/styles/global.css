@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 html {
   background-color: #f1f5f9;
   font-family: sans-serif;
+  color: #000;
 }
 
 html.dark {

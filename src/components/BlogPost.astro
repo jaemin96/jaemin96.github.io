@@ -1,12 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
 const { post } = Astro.props;
-const { data, slug } = post;
+const { data, id } = post;
 ---
 
 <article class="blog-post">
-  <a href={`/blog/${slug}/`} class="blog-post__link">
+  <a href={`/posts/${id}/`} class="blog-post__link">
     <h2 class="blog-post__title">{data.title}</h2>
     <p class="blog-post__description">{data.description}</p>
     <time class="blog-post__date">
