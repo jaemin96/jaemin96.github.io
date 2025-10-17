@@ -14,12 +14,12 @@ canonicalURL: ""
 hideEditPost: false
 timezone: Asia/Seoul
 ---
-# useWatchAndAutoClear
+## useWatchAndAutoClear
 
 > **antd**의 form 기능의 편의성을 위해 추가한 **custom hook**이며, </br>
 > 입력 form들을 추적하여 변화를 감지하고 변화에 따라 입력 필드를 초기화해주는 hook이다.
 
-## ☁ 기본 구성
+### ☁ 기본 구성
 
 ```typescript
 // useWatchAndAutoClear.tsx
@@ -48,7 +48,7 @@ export const useWatchAndAutoClear = (
 };
 ```
 
-### ⛅ Hook 프로세스
+#### ⛅ Hook 프로세스
 
 1. 모체가 되는 form 받아옴
 2. 감시할 필드`(watchFieldPath)`와 초기화할 필드 정보`(clearFieldPath)`를 받아옴
@@ -56,7 +56,7 @@ export const useWatchAndAutoClear = (
 4. 감시할 필드의 값이 변경됨에 따라 조건을 지속적으로 검증
 5. 조건 검사 결과에 따라 초기화 수행 여부 결정
 
-## 🌤 간단한 사용 예시
+### 🌤 간단한 사용 예시
 
 ```typescript
 import { Form } from "antd"
@@ -85,7 +85,7 @@ export const exFn = () => {
 }
 ```
 
-### 🌞 코드 설명
+#### 🌞 코드 설명
 
 * antd Form 메서드를 통해 form 정의
 * Form과 Form.Item 에 정의한 폼과 필드 path 부여하기 (name 속성)
