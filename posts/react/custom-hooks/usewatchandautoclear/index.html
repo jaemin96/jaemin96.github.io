@@ -243,29 +243,56 @@ Back To Top
   }
   backToTop();
 </script> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post on:</span><div class="text-center"><a href="mailto:?subject=See%20this%20post&#38;body=https://jaemin96.github.io/posts/react/custom-hooks/usewatchandautoclear/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg><span class="sr-only">Share this post via email</span></a></div></div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">   </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div class="mt-8" id="giscus-container"> <script src="https://giscus.app/client.js" data-repo="jaemin96/jaemin96.github.io" data-repo-id="R_kgDOGlblSA" data-category="Q&A" data-category-id="DIC_kwDOGlblSM4Cwycn" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="catppuccin_macchiato" data-lang="ko" crossorigin="anonymous" async></script> </div> <script>
-  const observer = new MutationObserver(() => {
+  function setGiscusTheme() {
     const theme =
-      document.documentElement.dataset.theme || "catppuccin_macchiato";
+      document.documentElement.dataset.theme === "dark"
+        ? "catppuccin_macchiato"
+        : "noborder_light";
+
     const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe) return;
 
     iframe.contentWindow?.postMessage(
       {
         giscus: {
-          setConfig: {
-            theme: theme === "dark" ? "catppuccin_macchiato" : "noborder_light",
-          },
+          setConfig: { theme },
         },
       },
       "https://giscus.app"
     );
+  }
+
+  // iframe load 완료 후에만 테마 적용 (핵심)
+  function handleGiscusIframeLoad() {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe) return;
+
+    iframe.addEventListener("load", () => {
+      // 완전히 로드된 뒤 테마 주입
+      setTimeout(setGiscusTheme, 200);
+    });
+  }
+
+  // Giscus iframe 새로 생길 때마다 load 이벤트 등록
+  const iframeObserver = new MutationObserver(() => {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (iframe && !iframe.dataset.giscusLoaded) {
+      iframe.dataset.giscusLoaded = "true"; // 중복 방지
+      handleGiscusIframeLoad();
+    }
   });
 
-  // data-theme 속성이 바뀌면 감지
-  observer.observe(document.documentElement, {
+  iframeObserver.observe(document.body, { childList: true, subtree: true });
+
+  // 테마 변경 시에도 동기화
+  const themeObserver = new MutationObserver(setGiscusTheme);
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
+
+  // 페이지 첫 진입 시
+  window.addEventListener("load", () => setTimeout(setGiscusTheme, 300));
 </script> </main> <footer class="w-full mt-auto"> <div class="mx-auto max-w-app px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/jaemin96" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Jaemin.dev on GitHub"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Jaemin.dev on GitHub</span> </a><a href="mailto:lemon__96@naver.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to Jaemin.dev"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Jaemin.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
   /** Create a progress indicator
    *  at the top */
