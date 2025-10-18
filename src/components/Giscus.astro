@@ -1,5 +1,5 @@
 ---
-const theme = "noborder_light"; // 초기 기본값
+const theme = "catppuccin_macchiato";
 ---
 
 <div class="mt-8" id="giscus-container">
@@ -21,9 +21,9 @@ const theme = "noborder_light"; // 초기 기본값
 </div>
 
 <script is:inline>
-  // Giscus 테마 동기화
   const observer = new MutationObserver(() => {
-    const theme = document.documentElement.dataset.theme || "noborder_light";
+    const theme =
+      document.documentElement.dataset.theme || "catppuccin_macchiato";
     const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe) return;
 
