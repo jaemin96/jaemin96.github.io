@@ -21,27 +21,54 @@ const theme = "catppuccin_macchiato";
 </div>
 
 <script is:inline>
-  const observer = new MutationObserver(() => {
+  function setGiscusTheme() {
     const theme =
-      document.documentElement.dataset.theme || "catppuccin_macchiato";
+      document.documentElement.dataset.theme === "dark"
+        ? "catppuccin_macchiato"
+        : "noborder_light";
+
     const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe) return;
 
     iframe.contentWindow?.postMessage(
       {
         giscus: {
-          setConfig: {
-            theme: theme === "dark" ? "catppuccin_macchiato" : "noborder_light",
-          },
+          setConfig: { theme },
         },
       },
       "https://giscus.app"
     );
+  }
+
+  // iframe load 완료 후에만 테마 적용 (핵심)
+  function handleGiscusIframeLoad() {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe) return;
+
+    iframe.addEventListener("load", () => {
+      // 완전히 로드된 뒤 테마 주입
+      setTimeout(setGiscusTheme, 200);
+    });
+  }
+
+  // Giscus iframe 새로 생길 때마다 load 이벤트 등록
+  const iframeObserver = new MutationObserver(() => {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (iframe && !iframe.dataset.giscusLoaded) {
+      iframe.dataset.giscusLoaded = "true"; // 중복 방지
+      handleGiscusIframeLoad();
+    }
   });
 
-  // data-theme 속성이 바뀌면 감지
-  observer.observe(document.documentElement, {
+  iframeObserver.observe(document.body, { childList: true, subtree: true });
+
+  // 테마 변경 시에도 동기화
+  const themeObserver = new MutationObserver(setGiscusTheme);
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
+
+  // 페이지 첫 진입 시
+  window.addEventListener("load", () => setTimeout(setGiscusTheme, 300));
 </script>
