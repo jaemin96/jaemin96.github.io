@@ -14,6 +14,7 @@ import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
+import Giscus from "@/components/Giscus.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -162,6 +163,11 @@ const nextPost =
         )
       }
     </div>
+
+    <hr class="my-6 border-dashed" />
+
+    <!-- Previous/Next Post Buttons -->
+    <Giscus />
   </main>
   <Footer />
 </Layout>
