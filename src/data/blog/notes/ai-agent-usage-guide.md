@@ -1,8 +1,8 @@
 ---
 title: AI 에이전트와 함께 성장하기 - 의존이 아닌 협업의 기술
 description: "Claude Code 같은 AI 에이전트를 현명하게 활용하면서도 개발 실력을 키우는 방법"
-pubDatetime: 2025-01-29
-modDatetime: 2025-01-29
+pubDatetime: 2026-01-29
+modDatetime: 2026-01-29
 author: Jaemin
 tags:
   - AI
