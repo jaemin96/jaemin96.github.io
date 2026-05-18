@@ -67,7 +67,7 @@ shared-config/
   "devDependencies": {
     "@changesets/cli": "^2.29.8"
   },
-  "packageManager": "pnpm@10.17.1" 
+  "packageManager": "pnpm@10.17.1"
 }
 ```
 
@@ -100,7 +100,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      id-token: write  # OIDC Trusted Publishing에 필수!
+      id-token: write # OIDC Trusted Publishing에 필수!
 
     steps:
       - name: Checkout
@@ -116,9 +116,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24  # npm OIDC는 Node.js 24+ 필요!
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: 24 # npm OIDC는 Node.js 24+ 필요!
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -215,7 +215,7 @@ https://github.com/{username}/{repo}/settings/actions
 - name: Setup Node.js
   uses: actions/setup-node@v4
   with:
-    node-version: 24  # 22에서 24로 변경
+    node-version: 24 # 22에서 24로 변경
 ```
 
 ### 문제 2: `Error verifying sigstore provenance bundle`
@@ -253,6 +253,7 @@ package.json: "repository.url" is "", expected to match "https://github.com/..."
 **원인**: npm에 패키지가 아예 존재하지 않음
 
 **해결**: 최초 1회는 수동으로 publish 필요:
+
 > 가끔 NPM에 등록 안되는 이슈도 있는데 provenance 무시하고 올리려면 --no-provenance 옵션도 추가
 
 ```bash
@@ -274,7 +275,7 @@ pnpm changeset
 대화형으로 진행:
 
 1. 변경된 패키지 선택 (스페이스바)
-    - 처음에 그냥 무지성으로 Enter만 누르니까 계속 에러나서 뭐지 했는데 space로 체크 활성화 해줘야함...ㅎㅎ
+   - 처음에 그냥 무지성으로 Enter만 누르니까 계속 에러나서 뭐지 했는데 space로 체크 활성화 해줘야함...ㅎㅎ
 
 2. 버전 타입 선택:
    - **patch**: 1.0.0 → 1.0.1 (버그 수정)
@@ -333,6 +334,7 @@ PR을 머지하면:
 또한 NPM 릴리즈 기반으로 버전 관리가 가능해지면서, 각 레포에서 필요한 버전의 공통 패키지를 선택적으로 사용할 수 있는 환경이 마련되었다.
 
 **핵심 체크리스트**:
+
 > 참고하실분들은 꼭 체크리스트 확인해서 삽질 시간 줄이시길...
 
 - ✅ Node.js `24+` 사용

@@ -14,6 +14,7 @@ canonicalURL: ""
 hideEditPost: false
 timezone: Asia/Seoul
 ---
+
 ## useWatchAndAutoClear
 
 > **antd**의 form 기능의 편의성을 위해 추가한 **custom hook**이며, </br>
@@ -23,28 +24,28 @@ timezone: Asia/Seoul
 
 ```typescript
 // useWatchAndAutoClear.tsx
-import { useEffect } from 'react';
-import { Form, FormInstance } from 'antd';
+import { useEffect } from "react";
+import { Form, FormInstance } from "antd";
 
-type Comparator = (val: any) => boolean; // clear 수행할 조건식 타입 
+type Comparator = (val: any) => boolean; // clear 수행할 조건식 타입
 
 export const useWatchAndAutoClear = (
-  form: FormInstance,
-  watchFieldPath: string[], // 변경 주시할 필드
-  clearFieldPath: string[], // 폼 초기화 할 필드
-  isNegative: Comparator = (val) => val !== 'Y' && val !== '있음' // 클리어 조건
+  form: FormInstance,
+  watchFieldPath: string[], // 변경 주시할 필드
+  clearFieldPath: string[], // 폼 초기화 할 필드
+  isNegative: Comparator = val => val !== "Y" && val !== "있음" // 클리어 조건
 ): any => {
   // 넘겨줄 form의 field name path에 해당하는 필드를 감시
-  const value = Form.useWatch(watchFieldPath, form);
+  const value = Form.useWatch(watchFieldPath, form);
 
   // 감시하는 폼 필드가 변경되면 조건 검사 (조건에 해당되는 경우 초기화 수행)
-  useEffect(() => {
-    if (isNegative(value)) {
-      form.setFieldValue(clearFieldPath, '');
-    }
-  }, [value, form]);
+  useEffect(() => {
+    if (isNegative(value)) {
+      form.setFieldValue(clearFieldPath, "");
+    }
+  }, [value, form]);
 
-  return value;
+  return value;
 };
 ```
 
@@ -63,7 +64,7 @@ import { Form } from "antd"
 
 export const exFn = () => {
   ...
-  
+
   const [임의form] = Form.useForm();
   // ex) 감시할 필드가 라디오 버튼이라면 감시당할필드_현재값은 true | false
   const 감시당할필드_현재값 = useWatchAndAutoClear(
@@ -74,12 +75,12 @@ export const exFn = () => {
 
   return {
    ...
-   
+
    <Form form={임의form}>
     <Form.Item name={['감시할 필드']} />
     <Form.Item name={['초기화할 필드']} />
    </Form>
-   
+  
    ...
   }
 }
@@ -87,6 +88,6 @@ export const exFn = () => {
 
 #### 🌞 코드 설명
 
-* antd Form 메서드를 통해 form 정의
-* Form과 Form.Item 에 정의한 폼과 필드 path 부여하기 (name 속성)
-* custom hook에 정의한 form과 부여한 필드 path 정보를 전달
+- antd Form 메서드를 통해 form 정의
+- Form과 Form.Item 에 정의한 폼과 필드 path 부여하기 (name 속성)
+- custom hook에 정의한 form과 부여한 필드 path 정보를 전달
