@@ -82,7 +82,7 @@ AI가 코드를 짜주면 그냥 복붙하고 끝내는 게 아니라
 // AI가 짜준 코드
 const fetchData = async () => {
   try {
-    const response = await fetch('/api/data');
+    const response = await fetch("/api/data");
     const data = await response.json();
     return data;
   } catch (error) {
@@ -180,7 +180,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
   fetchData().then(result => setData(result));
-}, []);  // dependency 누락
+}, []); // dependency 누락
 ```
 
 주기적으로 "이 코드 프로덕션에 써도 괜찮아?" 물어보고, 왜 안 되는지 이해하는 시간이 필요하다고 판단.
@@ -223,7 +223,7 @@ useEffect(() => {
 #### 개선된 접근 (현재)
 
 ```m
-"GitHub Actions로 React 앱을 자동 배포하려면 
+"GitHub Actions로 React 앱을 자동 배포하려면
 어떤 단계들이 필요해? 각 단계의 역할은 뭐야?"
 ```
 

@@ -87,27 +87,26 @@ timezone: Asia/Seoul
 ### FID와 INP 차이는 무엇일까?
 
 `FID`는 첫 입력 지연만 측정한다. 그래서 페이지 로드 자체는 빠르지만,  
-그 이후 필터링이나 정렬 등 추가적인 행동으로 버벅임이 생기더라도 해당 페이지는 적합한 사이트로 통과되는 모순이 있었다.  
+그 이후 필터링이나 정렬 등 추가적인 행동으로 버벅임이 생기더라도 해당 페이지는 적합한 사이트로 통과되는 모순이 있었다.
 
 `INP`는 세션 전체에 걸친 모든 인터렉션의 응답을 측정하여 이러한 첫 로드만 빠른 페이지들이 적합한 사이트로 통과되지 못하도록 측정 범위를 강화하었다.
 
 ### INP 관리 해야할 3가지 단계에 대하여 알아보자
 
 - **Input Delay (입력 지연)**  
-사용자가 클릭 했는데, 메인 스레드가 바쁘다고 이를 무시한다  
-  
+  사용자가 클릭 했는데, 메인 스레드가 바쁘다고 이를 무시한다
+
   Sol) async/defer, scheduler.yield
 
 - **Processing Time (처리 시간)**  
-클릭은 접수 완료.  
-단, 클릭을 수행하기 위한 핸들러 자체가 너무 무거워서 오래걸림  
-  
+  클릭은 접수 완료.  
+  단, 클릭을 수행하기 위한 핸들러 자체가 너무 무거워서 오래걸림
+
   Sol) scheduler.yield, useTransition/useDeferredValue, web-worker, debounce
 
 - **Presentation Delay (출현 지연)**  
-클릭 완료했고 핸들링까지 신속하게 완료.  
-단, 변화한 내역을 화면에 표시하려하니 DOM 요소가 너무 많거나 레이아웃이 꼬여서 힘들어함  
-  
+  클릭 완료했고 핸들링까지 신속하게 완료.  
+  단, 변화한 내역을 화면에 표시하려하니 DOM 요소가 너무 많거나 레이아웃이 꼬여서 힘들어함
   Sol) React-window, React-virtuoso, css(content-visibility: auto), div -> Fragment
 
 > **async/defer** : 해당 작업은 중요하지 않다고 우선순위를 뒤로 미뤄준다.  
@@ -117,16 +116,16 @@ timezone: Asia/Seoul
 
 ### React 기반 성능 최적화 방법들
 
-> useMemo나 useCallback도 알고 있었으나, manual memoization은 점점 사라지는 추세라고 한다.  
+> useMemo나 useCallback도 알고 있었으나, manual memoization은 점점 사라지는 추세라고 한다.
 >
-> React Compiler가 빌드 타임에 자동으로 정적 분석 후 필요한 부분에만 useMemo / useCallback 을 삽입해준다고 하며, 이러한 컴파일링 과정에서 코드 변경 없이 10~15% 성능이 향상 되었다는 보고가 있다.  
+> React Compiler가 빌드 타임에 자동으로 정적 분석 후 필요한 부분에만 useMemo / useCallback 을 삽입해준다고 하며, 이러한 컴파일링 과정에서 코드 변경 없이 10~15% 성능이 향상 되었다는 보고가 있다.
 >
 > memo·useMemo·useCallback을 그냥 다 붙이는 방식은 안티패턴이 되어가는 중이며 필요한 곳에만 수동 적용하거나 Compiler에게 맡기는 것이 효율적이라고 한다.
 
-#### **동시성 Hooks 활용**  
+#### **동시성 Hooks 활용**
 
-- useTransition : state 업데이트 우선순위 분리 (검색 필터링, 탭 전환, 대량 리스트 패치)  
-- useDeferredValue : 값 자체를 지연 렌더링 처리 (직접 컨트롤할 수 없는 props 전달 받은 게 무거운 경우)  
+- useTransition : state 업데이트 우선순위 분리 (검색 필터링, 탭 전환, 대량 리스트 패치)
+- useDeferredValue : 값 자체를 지연 렌더링 처리 (직접 컨트롤할 수 없는 props 전달 받은 게 무거운 경우)
 - useOptimistic : 서버 응답 전 UI 즉시 업데이트 (댓글, 좋아요)
 - useActionState : 비동기 액션 + state 통합 (폼 제출 + 로딩/에러 상태 관리)
 

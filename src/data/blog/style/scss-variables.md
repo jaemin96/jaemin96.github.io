@@ -16,7 +16,6 @@ hideEditPost: false
 timezone: Asia/Seoul
 ---
 
-
 > 기존에도 color 들을 정의해두고 모든 스타일 파일에서 쉽게 활용하였는데, 문득 좀 더 나은 구조로 개선할 순 없을까 고민 끝에 구조를 개선하였다
 
 ### ☁ 기존에는 그냥 활용할 값들을 모두 나열해서 정의했는데
@@ -107,19 +106,19 @@ $palette: (
 #### 기존에는 variables 정의 스타일 변수를 직접 호출해서 사용했는데
 
 ```scss
-@use '@scss/abstracts' as *; // abstracts 모듈에 variables가 포함되어있음
+@use "@scss/abstracts" as *; // abstracts 모듈에 variables가 포함되어있음
 
 h1 {
- color: $black;
+  color: $black;
 }
 ```
 
 #### helper 함수를 통해 받아온 값을 사용하는 방식으로 개선하였다
 
 ```scss
-@use '@scss/abstracts' as *;
+@use "@scss/abstracts" as *;
 
 h1 {
- color: color(success, 500) // $palette - success - 500
+  color: color(success, 500); // $palette - success - 500
 }
 ```

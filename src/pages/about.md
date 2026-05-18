@@ -4,6 +4,7 @@ title: "About"
 ---
 
 Thoughts, experiments, and little discoveries
+
 <!-- [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). -->
 
 ![jaemin96 Paper](public/jaemin96-og.png)
