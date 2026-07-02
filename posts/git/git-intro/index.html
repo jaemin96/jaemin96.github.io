@@ -100,11 +100,11 @@ GUI에서 버튼 클릭을 통해 처리된 것들을 CLI 환경에서 똑같이
 작업중인데 완료되지 않고 브랜치를 변경하거나 환경을 잠깐 바꿔야할때는 stash &#x26; pop 으로 임시저장 및 불러오기를 이용합니다.<br>
 그리고 원격저장소에 신규 업데이트 된 내역이 있다면 pull을 받습니다.</p>
 </blockquote>
-<p>답변 자체는 틀리지 않았다고 자신하지만, 좀 더 디테일하게 대답을 요구한다면 쉽게 이 이상을 설명할 순 없을 것이다.</p>
+<p>답변 자체는 틀리지 않았다고 자신하지만, 좀 더 디테일한 대답을 요구한다면 쉽게 이 이상을 설명할 순 없을 것이다.</p>
 <h2 id="그래서-git이-정확히-무엇일까">그래서, Git이 정확히 무엇일까?</h2>
 <h3 id="일단-형상관리-라는-말부터-이해할-필요가-있다">일단 ‘형상관리’ 라는 말부터 이해할 필요가 있다</h3>
 <p>형상관리란 소프트웨어 개발 과정에서 발생하는 모든 변경 사항들을 체계적으로 추적하고 통제하는 활동을 말한다.<br>
-여기서 말하는 모든 변경 사항들에는 코드 변경, 문서, 라이브러리의 변경 같은 내용들을 포함한다.</p>
+여기서 말하는 모든 변경 사항들에는 코드, 문서, 라이브러리의 변경 같은 내용들을 포함한다.</p>
 <h3 id="git을-통해-형상관리하는-플로우에-대하여-알아보자">Git을 통해 형상관리하는 플로우에 대하여 알아보자</h3>
 <pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="markdown"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">Working Directory → [git add]  </span></span>
 <span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> → Staging Area → [git commit]  </span></span>
@@ -133,7 +133,7 @@ GUI에서 버튼 클릭을 통해 처리된 것들을 CLI 환경에서 똑같이
 <li>Remote Repository</li>
 </ul>
 <p><code>git push</code> 명령을 통해 로컬에서만 관리하던 변경사항을 원격저장소에 업데이트 해줄 수 있다.<br>
-반대로 <code>git pull</code> 명령을 통해 원격저장소에 변경사항을 로컬에 가져올 수도 있다.</p>
+반대로 <code>git pull</code> 명령을 통해 원격저장소의 변경사항을 로컬에 가져올 수도 있다.</p>
 <h2 id="내가-git을-쓰면서-자주-쓰는-것들">내가 Git을 쓰면서 자주 쓰는 것들</h2>
 <p>내가 Git을 활용하면서 개발할 때 가장 많이 쓰는 명령이 몇 가지 있다.</p>
 <p><code>git status</code><br>
