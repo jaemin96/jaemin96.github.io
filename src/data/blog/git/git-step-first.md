@@ -75,7 +75,7 @@ cat-file 명령으로 커밋을 뜯어보면 루트 tree 하나의 해시와
 커밋은 그 시점의 스냅샷을 가리키는 포인터이다.  
 작업의 diff 확인은 두 스냅샷을 비교해서 그때그때 계산하는 방식이다.
 
-![blob-tree-commit](/public/assets/git_object_model_commit_tree_blob.svg)
+![blob-tree-commit](/assets/git_object_model_commit_tree_blob.svg)
 
 ### refs와 HEAD
 
