@@ -53,7 +53,7 @@ git init
 파일 내용, 디렉토리 구조, 커밋 등 모든 데이터가 저장되는 곳이다.  
 데이터베이스라고 보면 된다.
 
-이 Objects에는 딱 4가지(`blob`, `tree`, `commit`, `tag`) 객체가 들어간다.  
+이 Objects에는 딱 4가지(`blob`, `tree`, `commit`, `tag`) 객체가 들어간다.
 
 #### blob
 
@@ -69,7 +69,7 @@ tree가 다른 tree를 가리키면 그것이 하위 디렉토리이다.
 #### commit
 
 cat-file 명령으로 커밋을 뜯어보면 루트 tree 하나의 해시와  
-부모 커밋 해시(첫 커밋 시 존재하지 않음) + 작성자 정보 + 메세지를 가지는 것을 확인할 수 있다.  
+부모 커밋 해시(첫 커밋 시 존재하지 않음) + 작성자 정보 + 메세지를 가지는 것을 확인할 수 있다.
 
 커밋이 작업의 변경분을 저장한다고 생각할 수 있지만,  
 커밋은 그 시점의 스냅샷을 가리키는 포인터이다.  
@@ -79,7 +79,7 @@ cat-file 명령으로 커밋을 뜯어보면 루트 tree 하나의 해시와
 
 ### refs와 HEAD
 
-main 브랜치 파일을 직접 확인해보면  
+main 브랜치 파일을 직접 확인해보면
 
 ```bash
 cat .git/refs/heads/main
@@ -110,7 +110,7 @@ HEAD는 커밋을 직접 바라보게 하는게 아니라 브랜치를 가리키
 ### index
 
 `git add` 명령으로 변경사항을 스테이징 영역에 올린다.  
-여기서 말하는 스테이징 영역이 바로 이 `.git/index` 바이너리 파일이다.  
+여기서 말하는 스테이징 영역이 바로 이 `.git/index` 바이너리 파일이다.
 
 ```bash
 git ls-files --stage
@@ -121,17 +121,17 @@ git ls-files --stage
 commit 이라는 것이 index의 내용을 tree 객체로 굳혀서 저장하는 행위이기 때문이다.  
 즉, index는 작성 중인 tree의 초안으로 보면 된다.
 
-흔히 `git status` 명령으로 스테이징 관리를 해왔을 것이다.  
+흔히 `git status` 명령으로 스테이징 관리를 해왔을 것이다.
 
-여기서 status 명령은  
+여기서 status 명령은
 
 - HEAD의 커밋 (마지막으로 확정된 스냅샷)
 - index (다음 커밋이 될 스냅샷 - 초안)
 - 작업 영역 디렉토리 (현재 관리하는 실제 파일들)
 
-이 세 가지를 비교한다.  
+이 세 가지를 비교한다.
 
 HEAD와 index가 다르다면 초록색 로그 (Changes to be committed)  
-index와 작업 영역 디렉토리가 다르면 빨간색 로그 (Changes not staged)  
+index와 작업 영역 디렉토리가 다르면 빨간색 로그 (Changes not staged)
 
 지금 껏 status를 통해 많이 보던 결과가 저 세 가지를 diff check 해서 나온 결과였던 것!
